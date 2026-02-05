@@ -118,7 +118,7 @@ if [ "$DO_LINKS" = true ]; then
     link_file "$DOTFILES_DIR/config/fish" "$HOME/.config/fish"
     link_file "$DOTFILES_DIR/config/kanata" "$HOME/.config/kanata"
     link_file "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
-    # link_file "$DOTFILES_DIR/config/tmux/.tmux.conf" "$HOME/.tmux.conf"
+    link_file "$DOTFILES_DIR/config/gitu" "$HOME/.config/gitu"
 
     echo ""
     echo "🧾 Summary: $CREATED symlink(s) created or fixed, $SKIPPED skipped."

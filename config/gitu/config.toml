@@ -1,0 +1,8 @@
+[general]
+always_show_help.enabled = true
+# collapsed_sections = ["staged_changes"]
+refresh_on_file_change.enabled = true
+stash_list_limit = 20
+recent_commits_limit = 100
+mouse_support = true
+mouse_scroll_lines = 3
