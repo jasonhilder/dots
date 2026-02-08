@@ -24,12 +24,9 @@
 # ```  
 
 # * Clone dotfiles
-# * Run this install script (symlinks configs and install software)
-# * Install bob neovim manager
-# ```
-#  curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash
-# ```
-# * Get fonts, Lato(desktop) and Hack(mono/terminal)
+# * Install bob neovim manager [ curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash ]
+# * Get fonts, Lato(desktop) and Hack(mono/terminal) and Hack Nerd font
+# * Install steam 
 # ---------------------------------------------------------------------------------
 ## GLOBAL VARS
 # ---------------------------------------------------------------------------------

@@ -81,7 +81,7 @@ alias vim='nvim'
 alias v='nvim'
 alias :q='exit'
 alias files='nemo .'
-alias lg='nvim -c "lua nvgit()"'
+alias lg='gitu'
 
 # Custom shortcuts
 alias uz='7z'
