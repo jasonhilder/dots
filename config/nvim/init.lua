@@ -26,7 +26,8 @@ vim.o.splitright = true                -- Set horizontal splits to the right as 
 vim.o.splitbelow = true                -- Set vertical splits to the bottom as default
 vim.o.completeopt = 'menuone,noselect' -- Configures how the completion menu works
 vim.o.winborder = 'rounded'            -- LSP hover borders
-vim.opt.showmode = true
+vim.opt.showmode = false
+vim.opt.laststatus = 0
 
 ---------------------------------------------------------------------------------
 -- [[ PLUGINS ]]
@@ -39,7 +40,7 @@ vim.pack.add({
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
     { src = "https://github.com/tribela/transparent.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" }
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
 })
 
 vim.cmd.colorscheme("kanagawa")
@@ -48,34 +49,9 @@ require("trouble").setup()
 require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.statusline").setup()
 require("oil").setup({ view_options = { show_hidden = true, } })
 require("toggleterm").setup({ open_mapping = [[<c-\>]], direction = "float" })
-
---------------------------------------------------------------------------------
--- [[ Godot ]]
----------------------------------------------------------------------------------
--- paths to check for project.godot file
-local paths_to_check = {'/', '/../'}
-local is_godot_project = false
-local godot_project_path = ''
-local cwd = vim.fn.getcwd()
-
--- iterate over paths and check
-for key, value in pairs(paths_to_check) do
-    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
-        is_godot_project = true
-        godot_project_path = cwd .. value
-        break
-    end
-end
-
--- check if server is already running in godot project path
-local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
--- start server, if not already running
-if is_godot_project and not is_server_running then
-    vim.fn.serverstart(godot_project_path .. '/server.pipe')
-end
+require('winbar').setup()
 
 ---------------------------------------------------------------------------------
 -- [[ KEYMAPS ]]
@@ -118,4 +94,28 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
     pattern = '*',
 })
+
+--------------------------------------------------------------------------------
+-- [[ Godot ]]
+---------------------------------------------------------------------------------
+-- paths to check for project.godot file
+local paths_to_check = {'/', '/../'}
+local is_godot_project = false
+local godot_project_path = ''
+local cwd = vim.fn.getcwd()
+
+-- iterate over paths and check
+for key, value in pairs(paths_to_check) do
+    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
+        is_godot_project = true
+        godot_project_path = cwd .. value
+        break
+    end
+end
+
+-- check if server is already running in godot project path
+local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
+if is_godot_project and not is_server_running then
+    vim.fn.serverstart(godot_project_path .. '/server.pipe')
+end
 
