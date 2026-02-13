@@ -1,0 +1,53 @@
+/* Save to config/mozilla/firefox/xxxx.default-release/chrome/userChrome.css */
+
+/* Make tabs square */
+.tab-background {
+  border-radius: 0 !important;
+}
+#tabbrowser-tabs {
+  --tab-border-radius: 0 !important;
+}
+
+/* Remove spacing below tabs */
+#TabsToolbar {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#tabbrowser-tabs {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#navigator-toolbox {
+  padding-bottom: 0 !important;
+}
+
+/* Remove spacing between tabs and address bar */
+#nav-bar {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#titlebar {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:root {
+  --tab-block-margin: 0 !important;
+}
+
+/* Remove gaps between tabs - ADD THESE */
+.tabbrowser-tab {
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+
+/* Remove separator lines between tabs */
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  display: none !important;
+}
+
+/* Ensure tab content fills the space */
+.tab-content {
+  padding-inline: 8px !important; /* Adjust inner padding as needed */
+}
