@@ -50,7 +50,7 @@ function _G.get_winbar()
 
     local config = mode_config[mode] or { label = mode, hl = 'WinBarNormal' }
 
-    local filepath = vim.fn.expand('%:p')
+    local filepath = vim.fn.expand('%:t')
     local modified = vim.bo.modified and ' [*]' or ''
     local encoding = vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.o.encoding
     local filesize = _G.get_filesize()
@@ -62,7 +62,7 @@ function _G.get_winbar()
 
     -- Build the winbar string with encoding on right side first
     return string.format(
-        '%%#%s# %s %%#WinBarFilepath# %s%%#WarningMsg#%s%%=%%#WinBarInfo# %s %s:%s [%s] %s',
+        '%%#%s# %s %%#WinBarFilepath# filename: %s%%#WarningMsg#%s%%=%%#WinBarInfo# %s %s:%s [%s] %s',
         config.hl,
         config.label,
         filepath,

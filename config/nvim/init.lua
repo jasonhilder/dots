@@ -39,19 +39,33 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
+    { src = "https://github.com/saghen/blink.cmp" },
     { src = "https://github.com/tribela/transparent.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+    { src = "https://github.com/Teatek/gdscript-extended-lsp.nvim" },
 })
 
-vim.cmd.colorscheme("kanagawa")
-
+require('winbar').setup()
 require("trouble").setup()
 require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
+require('gdscript-extended-lsp').setup()
 require("oil").setup({ view_options = { show_hidden = true, } })
 require("toggleterm").setup({ open_mapping = [[<c-\>]], direction = "float" })
-require('winbar').setup()
+require('nvim-treesitter.configs').setup({ highlight = { enable = true, } })
+require('blink.cmp').setup({
+    keymap = {
+        preset = 'none',
+        ['<Tab>'] = { 'show', 'select_next', 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
+    },
+    completion = { documentation = { auto_show = false } },
+    sources = { default = { 'path', 'buffer', 'lsp' }, },
+    fuzzy = { implementation = "lua" }
+})
+vim.cmd.colorscheme("kanagawa")
 
 ---------------------------------------------------------------------------------
 -- [[ KEYMAPS ]]
