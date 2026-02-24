@@ -19,13 +19,15 @@
 #   ExecStart=/home/user/.cargo/bin/kanata --cfg /home/user/.config/kanata/config-name.kbd
 #   Restart=never
 #
-#   [Install]
+T   [Install]
 #   WantedBy=default.target
 # ```  
 
 # * Clone dotfiles
 # * Install bob neovim manager [ curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash ]
-# * Get fonts, Lato(desktop) and Hack(mono/terminal) and Hack Nerd font
+# * Install nerd font
+# * Remove firefox for Brave
+# * Setup gnome extensions
 # * Install steam 
 # ---------------------------------------------------------------------------------
 ## GLOBAL VARS
@@ -141,7 +143,8 @@ fi
 if [ "$DO_INSTALL" = true ]; then
     REQUIRED_PACKAGES=(
         # system essentials
-        fzf fd-find btop direnv ripgrep neovim tree
+        wget curl git
+        fzf fd-find btop direnv ripgrep tree rofi
         build-essential make bear valgrind fish 
     )
 

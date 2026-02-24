@@ -8,7 +8,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-       lmet lalt           spc            ralt rmet
+       lmet lalt           spc            ralt rmet   ;; swapped here
 )
 
 (deflayer base
@@ -16,7 +16,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    bspc
   lctl a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-       lmet lalt           spc            ralt rmet
+       lmet lalt           spc            ralt rmet   ;; swapped here
 )
 
 (deflayer navigation
