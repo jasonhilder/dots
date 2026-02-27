@@ -115,9 +115,12 @@ if [ "$DO_LINKS" = true ]; then
     SKIPPED=0
 
     link_file "$DOTFILES_DIR/config/fish" "$HOME/.config/fish"
+    link_file "$DOTFILES_DIR/config/foot" "$HOME/.config/foot"
     link_file "$DOTFILES_DIR/config/kanata" "$HOME/.config/kanata"
     link_file "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
     link_file "$DOTFILES_DIR/config/gitu" "$HOME/.config/gitu"
+    link_file "$DOTFILES_DIR/config/gtk3/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+    link_file "$DOTFILES_DIR/config/gtk4/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
 
     echo ""
     echo "🧾 Summary: $CREATED symlink(s) created or fixed, $SKIPPED skipped."
