@@ -19,7 +19,7 @@
 #   ExecStart=/home/user/.cargo/bin/kanata --cfg /home/user/.config/kanata/config-name.kbd
 #   Restart=never
 #
-T   [Install]
+#   [Install]
 #   WantedBy=default.target
 # ```  
 
@@ -147,7 +147,7 @@ if [ "$DO_INSTALL" = true ]; then
     REQUIRED_PACKAGES=(
         # system essentials
         wget curl git
-        fzf fd-find btop direnv ripgrep tree rofi
+        fzf fd-find btop direnv ripgrep tree
         build-essential make bear valgrind fish 
     )
 
