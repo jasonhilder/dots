@@ -1,0 +1,22 @@
+/* FORCE EVERYTHING SQUARE - GTK4 / libadwaita */
+* {
+    border-radius: 0px;
+}
+
+window,
+.window,
+decoration,
+.background,
+.titlebar,
+headerbar,
+dialog,
+popover,
+menu,
+tooltip,
+button,
+entry,
+stack,
+box,
+revealer {
+    border-radius: 0px;
+}

@@ -1,0 +1,136 @@
+/* 
+* NOTE:
+* Requires user theme extension + gnome tweaks
+* .local/share/themes/SquareShell/gnome-shell/gnome-shell.css 
+*/
+
+/* Remove rounding from the top panel buttons */
+#panel .panel-button, 
+#panel .panel-status-button {
+    border-radius: 0 !important;
+}
+
+/* Make top panel match libadwaita dark background */
+#panel {
+    background-color: #1e1e1e !important;
+    background-gradient-start: #1e1e1e !important;
+    background-gradient-end: #1e1e1e !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove rounding from all Shell popups (Calendar, Quick Settings, App menus) */
+.menu,
+.popup-menu-content,
+.candidate-popup-content,
+.message-list-controls,
+.datemenu-today-button,
+.world-clocks-button,
+.weather-button,
+.events-button,
+.search-section-content {
+    border-radius: 0 !important;
+}
+
+/* Remove rounding from Notifications and the Notification Banner */
+.notification-banner,
+.notification,
+.message {
+    border-radius: 0 !important;
+}
+
+/* Square off the Quick Settings "pills" (Bluetooth, WiFi, etc.) */
+.quick-settings-tile {
+    border-radius: 0 !important;
+}
+
+/* Square off the Search entry in Activities */
+.search-entry {
+    border-radius: 0 !important;
+}
+
+/* Match libadwaita dark popover surface */
+.menu,
+.popup-menu-content,
+.candidate-popup-content,
+.calendar,
+.quick-settings,
+.quick-settings-menu,
+.message-list,
+.datemenu-menu,
+.world-clocks-button,
+.weather-button,
+.events-button {
+    background-color: #242424 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    box-shadow: none !important;
+}
+
+.notification-banner,
+.notification,
+.message {
+    background-color: #242424 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.quick-settings-tile {
+    background-color: #2a2a2a !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.quick-settings-tile:hover,
+.menu-item:hover {
+    background-color: #303030 !important;
+}
+
+/* Calendar day buttons - normal state */
+.calendar-day-base,
+.calendar-day {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover */
+.calendar-day-base:hover,
+.calendar-day:hover {
+    background-color: #303030 !important;
+}
+
+/* Today (subtle outline, not filled) */
+.calendar-day-base.calendar-today {
+    background-color: transparent !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* Selected day (accent-style soft fill) */
+.calendar-day-base:selected,
+.calendar-day:selected {
+    background-color: rgba(120, 170, 220, 0.35) !important;
+    color: white !important;
+}
+
+/* Month selector pill ("February") */
+.calendar-month-label {
+    background-color: #242424 !important;
+    border-radius: 8px !important; /* set to 0 if fully square theme */
+    padding: 6px 12px !important;
+}
+
+/* Prev / Next arrow buttons */
+.calendar-change-month-back,
+.calendar-change-month-forward {
+    background-color: #242424 !important;
+    border-radius: 8px !important; /* 0 if you want square */
+}
+
+.calendar-change-month-back:hover,
+.calendar-change-month-forward:hover {
+    background-color: #353535 !important;
+}
+
+/* Weekday header row (S M T W T F S) */
+.calendar-day-heading {
+    background-color: transparent !important;
+    color: rgba(255,255,255,0.6) !important;
+}

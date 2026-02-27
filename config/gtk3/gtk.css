@@ -1,0 +1,19 @@
+/* FORCE EVERYTHING SQUARE - GTK3 */
+* {
+    border-radius: 0px;
+}
+
+.window-frame,
+decoration,
+.window,
+.background,
+.titlebar,
+headerbar,
+dialog,
+popover,
+menu,
+tooltip,
+button,
+entry {
+    border-radius: 0px;
+}
