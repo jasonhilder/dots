@@ -188,52 +188,18 @@ function extract
     end
 end
 
-# ==============================================================================
-# PROMPT CONFIGURATION
-# ==============================================================================
-
-function fish_prompt
-    set -l last_status $status
-    set -l user_color (set_color green)
-    set -l host_color (set_color blue)
-    set -l path_color (set_color cyan)
-    set -l prompt_symbol "❯"
-
-    # Root user adjustments
-    if contains $USER root
-        set user_color (set_color red --bold)
-        set prompt_symbol "#"
-    end
-
-    # SSH adjustments
-    if set -q SSH_CONNECTION
-        set host_color (set_color magenta)
-    end
-
-    set -l real_path (string replace -r "^$HOME" '~' $PWD)
-
-    # Print prompt: User@Host Path
-    printf '%s%s%s@%s%s %s%s%s' \
-        (set_color --bold) $user_color $USER $host_color (prompt_hostname) \
-        $path_color $real_path (set_color normal)
-
-    # Git integration (Fish built-in)
-    printf '%s' (fish_git_prompt)
-
-    # Exit code
-    if test $last_status -ne 0
-        printf ' %s✗%s ' (set_color red) $last_status
-    end
-
-    # New line and symbol
-    echo
-    printf '%s%s%s ' (set_color blue) $prompt_symbol (set_color normal)
-end
+set -l user_color (set_color green)
+set -l host_color (set_color blue)
+set -l path_color (set_color cyan)
 
 # Fish's built-in git prompt configuration
+set -eg ___fish_git_prompt_char_stateseparator
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_color_branch magenta --bold
 set -g __fish_git_prompt_color_stagedstate yellow
 set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_cleanstate green --bold
-
+set -g __fish_git_prompt_separator ' '
+set -g __fish_git_prompt_char_dirtystate '+'
+set -g __fish_git_prompt_char_stagedstate '●'
+set -g __fish_git_prompt_char_untrackedfiles ''

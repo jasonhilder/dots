@@ -33,6 +33,8 @@ vim.opt.laststatus = 0
 -- [[ PLUGINS ]]
 ---------------------------------------------------------------------------------
 vim.pack.add({
+    { src = "https://github.com/rktjmp/lush.nvim" },
+    { src = "https://github.com/CosecSecCot/cosec-twilight.nvim" },
     { src = "https://github.com/rebelot/kanagawa.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
@@ -51,7 +53,7 @@ require("mini.pick").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require('gdscript-extended-lsp').setup()
-require('kanagawa').setup({ undercurl = false })
+require('kanagawa').setup({ undercurl = false, transparent = true })
 require("oil").setup({ view_options = { show_hidden = true, } })
 require("toggleterm").setup({ open_mapping = [[<c-\>]], direction = "float" })
 require('nvim-treesitter.configs').setup({ highlight = { enable = true, } })
