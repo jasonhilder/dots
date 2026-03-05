@@ -28,16 +28,16 @@ vim.o.completeopt = 'menuone,noselect' -- Configures how the completion menu wor
 vim.o.winborder = 'rounded'            -- LSP hover borders
 vim.opt.showmode = false
 vim.opt.laststatus = 0
+vim.opt.list = true
+vim.opt.listchars = { tab = "| " }
 
 ---------------------------------------------------------------------------------
 -- [[ PLUGINS ]]
 ---------------------------------------------------------------------------------
 vim.pack.add({
-    { src = "https://github.com/rktjmp/lush.nvim" },
-    { src = "https://github.com/CosecSecCot/cosec-twilight.nvim" },
     { src = "https://github.com/rebelot/kanagawa.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/nvim-mini/mini.nvim" },
+    { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/akinsho/toggleterm.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
@@ -49,14 +49,12 @@ vim.pack.add({
 
 require('winbar').setup()
 require("trouble").setup()
-require("mini.pick").setup()
-require("mini.pairs").setup()
-require("mini.surround").setup()
 require('gdscript-extended-lsp').setup()
 require('kanagawa').setup({ undercurl = false, transparent = true })
 require("oil").setup({ view_options = { show_hidden = true, } })
 require("toggleterm").setup({ open_mapping = [[<c-\>]], direction = "float" })
 require('nvim-treesitter.configs').setup({ highlight = { enable = true, } })
+require("fzf-lua").setup({ winopts = { height = 0.95, width = 0.95, }, })
 require('blink.cmp').setup({
     keymap = {
         preset = 'none',
@@ -69,6 +67,26 @@ require('blink.cmp').setup({
     fuzzy = { implementation = "lua" }
 })
 vim.cmd.colorscheme("kanagawa")
+
+vim.api.nvim_set_hl(0, "@string.special.url", {
+  underline = false,
+  undercurl = false,
+})
+
+--------------------------------------------------------------------------------
+-- [[ SMART FILE PICKER ]]
+--------------------------------------------------------------------------------
+local function smart_files()
+    local is_godot = vim.fs.find("project.godot", { upward = true })[1] ~= nil
+
+    if is_godot then
+        require("fzf-lua").files({
+            cmd = "fdfind --type f -e gd -e cs -e gdshader -e shader -e tscn -e tres -e cfg --exclude .godot --exclude .import"
+        })
+    else
+        require("fzf-lua").files()
+    end
+end
 
 ---------------------------------------------------------------------------------
 -- [[ KEYMAPS ]]
@@ -85,12 +103,14 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>p", "<cmd>b#<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>")
-vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>s", ":Pick grep_live<CR>")
-vim.keymap.set("n", "<leader>b", ":Pick buffers<CR>")
+vim.keymap.set("n", "<leader>f", smart_files)
 vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
 vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+vim.keymap.set("n", "<leader>sp", ":lua FzfLua.grep_project()<CR>")
+vim.keymap.set("n", "<leader>sf", ":lua FzfLua.grep_curbuf()<CR>")
+vim.keymap.set("n", "<leader>sw", ":lua FzfLua.grep_cword()<CR>")
+vim.keymap.set("n", "<leader>h", function() require("fzf-lua").help_tags() end)
+vim.keymap.set("n", "<leader>b", function() require("fzf-lua").buffers() end)
 
 --------------------------------------------------------------------------------
 -- [[ LSP ]]
