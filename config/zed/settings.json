@@ -1,97 +1,128 @@
 {
-    "use_on_type_format": false,
-    "disable_ai": true,
-    "format_on_save": "off",
-    "restore_on_startup": "empty_tab",
-    "vim_mode": true,
-    "base_keymap": "VSCode",
-    "ui_font_size": 14,
-    "tab_size": 4,
-    "hard_tabs": false,
-    "soft_wrap": "none",
-    "show_whitespaces": "all",
-    "scrollbar": { "show": "never" },
-    "buffer_font_features": { "liga": false },
-    "buffer_font_size": 13.0,
-    "session": { "trust_all_worktrees": true },
-    "telemetry": { "diagnostics": false, "metrics": false },
-    "theme": {
-        "mode": "dark",
-        "light": "VSCode Dark Modern",
-        "dark": "VSCode Dark Modern",
-    },
-    "which_key": {
-        "delay_ms": 100,
-        "enabled": false,
-    },
-    // Vim stuff
-    "vim": {
-        "use_smartcase_find": true,
-        "toggle_relative_line_numbers": false
-    },
-    // UI specific
-    "toolbar": {
-        "agent_review": true,
-        "selections_menu": false,
-        "quick_actions": false,
-        "breadcrumbs": false
-    },
-    "tabs": {
-        "file_icons": false,
-        "git_status": false
-    },
-    "tab_bar": {
-        "show_nav_history_buttons": false,
-        "show_tab_bar_buttons": false,
-        "show": true
-    },
-    "title_bar": {
-        "show_user_picture": false,
-        "show_user_menu": false,
-        "show_sign_in": false,
-        "show_branch_name": true
-    },
-    "debugger": {
-        "button": false
-    },
-    "diagnostics": {
-        "button": false
-    },
-    "search": {
-        "button": false
-    },
-    "terminal": {
-        "button": false
-    },
-    "status_bar": {
-        "cursor_position_button": true,
-        "active_language_button": true
-    },
-    "project_panel": {
-        "button": false
-    },
-    // LSP
-    "languages": {
-        "PHP": {
-            "language_servers": ["intelephense", "!phpactor", "!outsourced", "!tailwindcss-language-server", "..."]
-        },
-        "Markdown": {
-            "language_servers": ["markdown-oxide", "!tailwindcss-language-server", "!json-language-server", "..."]
-        },
-        "HTML": {
-            "language_servers": ["!tailwindcss-language-server", "..."]
-        },
-        "CSS": {
-            "language_servers": ["!tailwindcss-language-server", "..."]
-        },
-        "JavaScript": {
-            "language_servers": ["!tailwindcss-language-server", "..."]
-        },
-        "TypeScript": {
-            "language_servers": ["!tailwindcss-language-server", "..."]
-        },
-        "JSON": {
-            "language_servers": ["!json-language-server", "..."]
-        }
-    },
+	// Core behavior
+	"disable_ai": true,
+	"restore_on_startup": "last_workspace",
+	"session": { "trust_all_worktrees": true },
+	"telemetry": { "diagnostics": false, "metrics": false },
+
+	// Editor behavior
+	"use_on_type_format": true,
+	"format_on_save": "off",
+	"tab_size": 4,
+	"hard_tabs": true,
+	"soft_wrap": "none",
+	"show_whitespaces": "none",
+
+	// Fonts & text rendering
+	"buffer_font_family": "Consolas",
+	"buffer_font_size": 14.5,
+	"buffer_line_height": "comfortable",
+	"buffer_font_features": { "liga": false },
+
+	// UI appearance
+	"ui_font_size": 14,
+	"scrollbar": { "show": "never" },
+	"theme": {
+		"mode": "dark",
+		"light": "Gruber Darker",
+		"dark": "Gruber Darker",
+	},
+
+	// Keybindings & modes
+	"vim_mode": true,
+	"base_keymap": "VSCode",
+
+	// Vim options
+	"vim": {
+		"use_smartcase_find": true,
+		"toggle_relative_line_numbers": false
+	},
+
+	// Toolbar & top-level UI controls
+	"toolbar": {
+		"agent_review": true,
+		"selections_menu": false,
+		"quick_actions": false,
+		"breadcrumbs": false
+	},
+
+	// Tabs & tab bar
+	"tabs": {
+		"file_icons": false,
+		"git_status": false
+	},
+	"tab_bar": {
+		"show_nav_history_buttons": false,
+		"show_tab_bar_buttons": false,
+		"show": true
+	},
+
+	// Title bar
+	"title_bar": {
+		"show_user_picture": false,
+		"show_user_menu": false,
+		"show_sign_in": false,
+		"show_branch_name": true
+	},
+
+	// Panels & buttons
+	"debugger": {
+		"button": false
+	},
+	"diagnostics": {
+		"button": false
+	},
+	"search": {
+		"button": false
+	},
+	"terminal": {
+		"dock": "right",
+		"button": false
+	},
+	"status_bar": {
+		"cursor_position_button": true,
+		"active_language_button": true
+	},
+	"project_panel": {
+		"hide_root": true,
+		"bold_folder_labels": true,
+		"button": false
+	},
+
+	// Language servers (LSP)
+	"languages": {
+		"PHP": {
+			"language_servers": [
+				"intelephense",
+				"!phpactor",
+				"!phptools",
+				"!outsourced",
+				"tailwindcss-language-server",
+				"..."
+			]
+		},
+		"Markdown": {
+			"language_servers": [
+				"markdown-oxide",
+				"!tailwindcss-language-server",
+				"!json-language-server",
+				"..."
+			]
+		},
+		"HTML": {
+			"language_servers": ["!tailwindcss-language-server", "..."]
+		},
+		"CSS": {
+			"language_servers": ["!tailwindcss-language-server", "..."]
+		},
+		"JavaScript": {
+			"language_servers": ["!tailwindcss-language-server", "..."]
+		},
+		"TypeScript": {
+			"language_servers": ["!tailwindcss-language-server", "..."]
+		},
+		"JSON": {
+			"language_servers": ["!json-language-server", "..."]
+		}
+	}
 }
