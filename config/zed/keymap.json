@@ -1,75 +1,64 @@
 [
-    // VIM NORMAL MODE
-    {
-        "context": "VimControl && vim_mode == normal",
-        "bindings": {
-            "ctrl-j": "vim::ScrollDown",
-            "ctrl-k": "vim::ScrollUp",
-            "ctrl-h": "pane::ActivatePreviousItem",
-            "ctrl-l": "pane::ActivateNextItem",
-            "space f": "file_finder::Toggle",
-            "space c": "pane::CloseActiveItem",
-            "space t": "workspace::NewCenterTerminal",
-            "space e": "project_panel::ToggleFocus",
-            "space p e": "workspace::ToggleLeftDock",
-            "space q": "pane::CloseAllItems",
-            "space h": "buffer_search::Dismiss",
-            "space a": "workspace::SaveAll",
-            "space l s": "project_symbols::Toggle",
-            "space l i": "editor::GoToImplementationSplit",
-            "space l r": "editor::Rename",
-            "space s t": "workspace::NewSearch",
-            "space b l": "pane::CloseItemsToTheRight",
-            "space b h": "pane::CloseItemsToTheLeft",
-            "space b a": "pane::ReopenClosedItem",
-            "space z f": ["workspace::SendKeystrokes", "shift-v shift-f ctrl-c"],
-            "space z a": [ "workspace::SendKeystrokes", "g g shift-v shift-g shift-f ctrl-c g g" ],
-            "space z u": [ "workspace::SendKeystrokes", "g g shift-v shift-g space z z ctrl-c g g" ],
-            "space g g": "git::Branch",
-            "ctrl-n": "menu::SelectNext", // Navigate down in lists (e.g., file finder, search results)
-            "ctrl-p": "menu::SelectPrevious", // Navigate up in lists
-            "ctrl-/": "editor::ToggleComments",
-            "ctrl-space": "workspace::ToggleBottomDock",
-        }
-    },
-    // VIM VISUAL MODE
-    {
-        "context": "Editor && vim_mode == visual && !menu && !Terminal",
-        "bindings": {
-            "shift-k": "editor::MoveLineUp",
-            "shift-j": "editor::MoveLineDown",
-        }
-    },
-    {
-        "context": "Editor && vim_mode != insert && !VimWaiting && mode != single_line",
-        "bindings": {
-            "g d": "editor::GoToDefinition",
-            "g i": "editor::GoToImplementation",
-            "g r": "editor::FindAllReferences"
-        }
-    },
-    // TERMINAL MODE
-    {
-        "context": "Terminal",
-        "bindings": {
-            "ctrl-space": "workspace::ToggleBottomDock",
-            "ctrl-o": "workspace::NewTerminal",
-            "ctrl-l": "pane::ActivateNextItem",
-            "ctrl-h": "pane::ActivatePreviousItem",
-            "ctrl-q": "pane::CloseActiveItem",
-            "ctrl-j": "terminal::Clear"
-        }
-    },
-    // FILE TREE
-    {
-        "context": "!renaming && ProjectPanel && !Terminal && !VimWaiting && vim_mode != insert && !editing",
-        "bindings": {
-            "a": "project_panel::NewFile",
-            "d": "project_panel::Delete",
-            "r": "project_panel::Rename",
-            "space e": "project_panel::Toggle",
-            "ctrl-n": "menu::SelectNext", // Navigate project panel list
-            "ctrl-p": "menu::SelectPrevious"
-        }
-    },
+	// VIM NORMAL MODE
+	{
+		"context": "VimControl && vim_mode == normal",
+		"bindings": {
+			"ctrl-h": "pane::ActivatePreviousItem",
+			"ctrl-l": "pane::ActivateNextItem",
+			"space f": "file_finder::Toggle",
+			"space t": "workspace::NewCenterTerminal",
+			"space e": "project_panel::ToggleFocus",
+			"space q": "pane::CloseAllItems",
+			"space h": "buffer_search::Dismiss",
+			"space l s": "project_symbols::Toggle",
+			"space l i": "editor::GoToImplementationSplit",
+			"space l r": "editor::Rename",
+			"space s p": "workspace::NewSearch",
+			"space b e": "pane::ReopenClosedItem",
+			"space g g": "git::Branch",
+			"space p p": "projects::OpenRecent",
+			"ctrl-n": "menu::SelectNext", // Navigate down in lists (e.g., file finder, search results)
+			"ctrl-p": "menu::SelectPrevious", // Navigate up in lists
+			"ctrl-/": "editor::ToggleComments",
+			"ctrl-space": "workspace::ToggleRightDock",
+		}
+	},
+	// VIM VISUAL MODE
+	{
+		"context": "Editor && vim_mode == visual && !menu && !Terminal",
+		"bindings": {
+			"shift-k": "editor::MoveLineUp",
+			"shift-j": "editor::MoveLineDown",
+		}
+	},
+	{
+		"context": "Editor && vim_mode != insert && !VimWaiting && mode != single_line",
+		"bindings": {
+			"g d": "editor::GoToDefinition",
+			"g i": "editor::GoToImplementation",
+			"g r": "editor::FindAllReferences"
+		}
+	},
+	// TERMINAL MODE
+	{
+		"context": "Terminal",
+		"bindings": {
+			"ctrl-space": "workspace::ToggleRightDock",
+			"ctrl-o": "workspace::NewTerminal",
+			"ctrl-l": "pane::ActivateNextItem",
+			"ctrl-h": "pane::ActivatePreviousItem",
+			"ctrl-q": "pane::CloseActiveItem",
+			"ctrl-j": "terminal::Clear"
+		}
+	},
+	// FILE TREE
+	{
+		"context": "!renaming && ProjectPanel && !Terminal && !VimWaiting && vim_mode != insert && !editing",
+		"bindings": {
+			"a": "project_panel::NewFile",
+			"d": "project_panel::Delete",
+			"r": "project_panel::Rename",
+			"space e": "project_panel::Toggle",
+		}
+	},
 ]
