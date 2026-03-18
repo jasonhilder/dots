@@ -5,7 +5,6 @@
 		"bindings": {
 			"ctrl-h": "pane::ActivatePreviousItem",
 			"ctrl-l": "pane::ActivateNextItem",
-			"space f": "file_finder::Toggle",
 			"space t": "workspace::NewCenterTerminal",
 			"space e": "project_panel::ToggleFocus",
 			"space q": "pane::CloseAllItems",
