@@ -26,8 +26,6 @@ vim.o.splitright = true                -- Set horizontal splits to the right as 
 vim.o.splitbelow = true                -- Set vertical splits to the bottom as default
 vim.o.completeopt = 'menuone,noselect' -- Configures how the completion menu works
 vim.o.winborder = 'rounded'            -- LSP hover borders
-vim.opt.showmode = false
-vim.opt.laststatus = 0
 vim.opt.list = true
 vim.opt.listchars = { tab = "| " }
 
@@ -47,7 +45,6 @@ vim.pack.add({
     { src = "https://github.com/Teatek/gdscript-extended-lsp.nvim" },
 })
 
-require('winbar').setup()
 require("trouble").setup()
 require('gdscript-extended-lsp').setup()
 require('kanagawa').setup({ undercurl = false, transparent = true })
@@ -155,4 +152,3 @@ local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
 if is_godot_project and not is_server_running then
     vim.fn.serverstart(godot_project_path .. '/server.pipe')
 end
-
