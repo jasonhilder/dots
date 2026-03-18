@@ -6,6 +6,7 @@
 	"telemetry": { "diagnostics": false, "metrics": false },
 
 	// Editor behavior
+	"gutter": { "line_numbers": true },
 	"use_on_type_format": true,
 	"format_on_save": "off",
 	"tab_size": 4,
@@ -14,19 +15,15 @@
 	"show_whitespaces": "none",
 
 	// Fonts & text rendering
-	"buffer_font_family": "Consolas",
-	"buffer_font_size": 14.5,
+	"buffer_font_family": "Hack Nerd Font",
+	"buffer_font_size": 14.8,
 	"buffer_line_height": "comfortable",
 	"buffer_font_features": { "liga": false },
 
 	// UI appearance
-	"ui_font_size": 14,
+	"ui_font_size": 17,
 	"scrollbar": { "show": "never" },
-	"theme": {
-		"mode": "dark",
-		"light": "Gruber Darker",
-		"dark": "Gruber Darker",
-	},
+	"theme": "Kanagawa Wave",
 
 	// Keybindings & modes
 	"vim_mode": true,
@@ -89,26 +86,15 @@
 		"button": false
 	},
 
+	// Git
+	"git": {
+		"inline_blame": {
+			"enabled": false
+		}
+	},
+
 	// Language servers (LSP)
 	"languages": {
-		"PHP": {
-			"language_servers": [
-				"intelephense",
-				"!phpactor",
-				"!phptools",
-				"!outsourced",
-				"tailwindcss-language-server",
-				"..."
-			]
-		},
-		"Markdown": {
-			"language_servers": [
-				"markdown-oxide",
-				"!tailwindcss-language-server",
-				"!json-language-server",
-				"..."
-			]
-		},
 		"HTML": {
 			"language_servers": ["!tailwindcss-language-server", "..."]
 		},
@@ -123,6 +109,16 @@
 		},
 		"JSON": {
 			"language_servers": ["!json-language-server", "..."]
-		}
+		},
+		// "PHP": {
+		// 	"language_servers": [
+		// 		"intelephense",
+		// 		"!phpactor",
+		// 		"!phptools",
+		// 		"!outsourced",
+		// 		"tailwindcss-language-server",
+		// 		"..."
+		// 	]
+		// },
 	}
 }

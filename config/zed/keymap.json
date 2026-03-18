@@ -15,12 +15,13 @@
 			"space l r": "editor::Rename",
 			"space s p": "workspace::NewSearch",
 			"space b e": "pane::ReopenClosedItem",
-			"space g g": "git::Branch",
 			"space p p": "projects::OpenRecent",
 			"ctrl-n": "menu::SelectNext", // Navigate down in lists (e.g., file finder, search results)
 			"ctrl-p": "menu::SelectPrevious", // Navigate up in lists
 			"ctrl-/": "editor::ToggleComments",
 			"ctrl-space": "workspace::ToggleRightDock",
+			// task spawns
+			"space g g": ["task::Spawn", { "task_name": "gitu" }]
 		}
 	},
 	// VIM VISUAL MODE
@@ -43,6 +44,11 @@
 	{
 		"context": "Terminal",
 		"bindings": {
+			"ctrl-w h": "workspace::ActivatePaneLeft",
+	        "ctrl-w l": "workspace::ActivatePaneRight",
+	        "ctrl-w k": "workspace::ActivatePaneUp",
+	        "ctrl-w j": "workspace::ActivatePaneDown",
+
 			"ctrl-space": "workspace::ToggleRightDock",
 			"ctrl-o": "workspace::NewTerminal",
 			"ctrl-l": "pane::ActivateNextItem",
