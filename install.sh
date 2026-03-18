@@ -21,14 +21,16 @@
 #
 #   [Install]
 #   WantedBy=default.target
-# ```  
+# ```
 
 # * Clone dotfiles
-# * Install bob neovim manager [ curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash ]
 # * Install nerd font
 # * Remove firefox for Brave
 # * Setup gnome extensions
-# * Install steam 
+# * [OPTIONAL]
+# * Install steam
+# * Install bob neovim manager [ curl -fsSL https://raw.githubusercontent.com/MordechaiHadad/bob/master/scripts/install.sh | bash ]
+# * Install latest version of golang
 # ---------------------------------------------------------------------------------
 ## GLOBAL VARS
 # ---------------------------------------------------------------------------------
@@ -114,10 +116,11 @@ if [ "$DO_LINKS" = true ]; then
     CREATED=0
     SKIPPED=0
 
+    link_file "$DOTFILES_DIR/config/kanata" "$HOME/.config/kanata"
     link_file "$DOTFILES_DIR/config/fish" "$HOME/.config/fish"
     link_file "$DOTFILES_DIR/config/foot" "$HOME/.config/foot"
-    link_file "$DOTFILES_DIR/config/kanata" "$HOME/.config/kanata"
     link_file "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
+    link_file "$DOTFILES_DIR/config/zed" "$HOME/.config/zed"
     link_file "$DOTFILES_DIR/config/gitu" "$HOME/.config/gitu"
     link_file "$DOTFILES_DIR/config/gtk3/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
     link_file "$DOTFILES_DIR/config/gtk4/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
@@ -146,9 +149,12 @@ fi
 if [ "$DO_INSTALL" = true ]; then
     REQUIRED_PACKAGES=(
         # system essentials
-        wget curl git
+        wget curl git unzip
         fzf fd-find btop direnv ripgrep tree
-        build-essential make bear valgrind fish 
+        build-essential make bear valgrind fish
+        # php dependencies
+        composer php-cli php-common php-curl
+        php-mbstring php-xml php-zip php-gd php-sqlite3
     )
 
     MISSING_PACKAGES=()
@@ -171,7 +177,7 @@ if [ "$DO_INSTALL" = true ]; then
         echo "📦 Updating package lists..."
         # Update package lists before installing
         sudo apt update
-        
+
         echo "📦 Installing missing packages: ${MISSING_PACKAGES[*]}"
         # Use sudo apt install for installing on Debian
         sudo apt install "${MISSING_PACKAGES[@]}"
@@ -181,4 +187,3 @@ if [ "$DO_INSTALL" = true ]; then
     echo "✅ Package setup complete."
     echo ""
 fi
-

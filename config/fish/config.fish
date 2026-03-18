@@ -19,7 +19,7 @@ set -gx LC_ALL "en_US.UTF-8"
 set -gx DEBUG 1
 set -gx GOPATH "$HOME/.go"
 set -gx GOCACHE "$HOME/.go/cache"
-set -gx GOROOT /usr/local/go 
+set -gx GOROOT /usr/local/go
 set -gx PATH /usr/local/go/bin $GOPATH/bin $PATH
 
 # FZF configuration
@@ -97,7 +97,7 @@ alias lspmake='bear -- make -B'
 # Project Manager
 function pp
     set -l project_file "$HOME/.projects"
-    
+
     # Create the file if it doesn't exist
     if not test -f "$project_file"
         touch "$project_file"
