@@ -3,8 +3,9 @@
     border-radius: 0px;
 }
 
-.window-frame,
+window,
 decoration,
+.window-frame,
 .window,
 .background,
 .titlebar,
@@ -17,3 +18,4 @@ button,
 entry {
     border-radius: 0px;
 }
+
