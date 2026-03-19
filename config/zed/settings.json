@@ -1,6 +1,7 @@
 {
 	// Core behavior
-	"disable_ai": true,
+	"window_decorations": "client",
+ 	"disable_ai": true,
 	"restore_on_startup": "last_workspace",
 	"session": { "trust_all_worktrees": true },
 	"telemetry": { "diagnostics": false, "metrics": false },
@@ -23,7 +24,23 @@
 	// UI appearance
 	"ui_font_size": 17,
 	"scrollbar": { "show": "never" },
-	"theme": "Kanagawa Wave",
+	// Theme sets highlights
+	"theme": "Tokyo Night",
+	// We override for comfy backgrounds
+	"theme_overrides": {
+	    "Tokyo Night": {
+	        "editor.document_highlight.read_background": "#00000000",
+	        "editor.document_highlight.write_background": "#00000000",
+	        "border.variant": "#111111",
+	        "border": "#111111",
+	        "title_bar.background": "#1e1e1e",
+	        "panel.background": "#1e1e1e",
+	        "panel.focused_border": "#0078D4",
+			"editor.background": "#1e1e1e",
+			"editor.gutter.background": "#1e1e1e",
+			"tab_bar.background": "#1e1e1e",
+	    },
+	},
 
 	// Keybindings & modes
 	"vim_mode": true,
@@ -110,15 +127,8 @@
 		"JSON": {
 			"language_servers": ["!json-language-server", "..."]
 		},
-		// "PHP": {
-		// 	"language_servers": [
-		// 		"intelephense",
-		// 		"!phpactor",
-		// 		"!phptools",
-		// 		"!outsourced",
-		// 		"tailwindcss-language-server",
-		// 		"..."
-		// 	]
-		// },
+		"PHP": {
+			"language_servers": [ "intelephense", "!phpactor", "!phptools", "!outsourced", "tailwindcss-language-server", "..." ]
+		},
 	}
 }
