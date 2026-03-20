@@ -203,3 +203,18 @@ set -g __fish_git_prompt_separator ' '
 set -g __fish_git_prompt_char_dirtystate '+'
 set -g __fish_git_prompt_char_stagedstate '●'
 set -g __fish_git_prompt_char_untrackedfiles ''
+
+# ==============================================================================
+# FZF PROJECT-AWARE COMMAND
+# ==============================================================================
+
+function __fzf_update_cmd --on-variable PWD
+    if test -f project.godot; or test -f ../project.godot
+        set -gx FZF_DEFAULT_COMMAND 'fdfind --type f -e gd -e cs -e gdshader -e shader -e tscn -e tres -e cfg --exclude .godot --exclude .import'
+    else
+        set -gx FZF_DEFAULT_COMMAND 'fdfind --exclude={.git,.cache,.xmake,.zig-cache,build,tmp,node_modules,elpa} --type f -H'
+    end
+end
+
+# Run once on shell start
+__fzf_update_cmd
