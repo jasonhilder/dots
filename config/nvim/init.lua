@@ -1,154 +1,70 @@
-vim.opt.mouse = 'a'                    -- Enables mouse support in all modes
-vim.opt.nu = true                      -- Enables line numbers
-vim.opt.relativenumber = true          -- Displays relative line numbers in the buffer
-vim.opt.tabstop = 4                    -- Sets the number of spaces that a tab character represents
-vim.opt.softtabstop = 4                -- Sets the number of spaces per tab in the editor's buffer
-vim.opt.shiftwidth = 4                 -- Sets the width for autoindents
-vim.opt.expandtab = true               -- Converts tabs to spaces
-vim.opt.smartindent = true             -- Enables intelligent autoindenting for new lines
-vim.opt.wrap = false                   -- Disables text wrapping
-vim.opt.swapfile = false               -- Disables swap file creation
-vim.opt.backup = false                 -- Disables making a backup before overwriting a file
-vim.opt.ignorecase = true              -- Makes searches case insensitive
-vim.opt.smartcase = true               -- Makes searches case sensitive if there's a capital letter
-vim.opt.hlsearch = true                -- Highlights all matches of the search pattern
-vim.opt.incsearch = true               -- Starts searching before typing is finished
-vim.opt.termguicolors = true           -- Enables true color support
-vim.opt.scrolloff = 20                 -- Keeps 8 lines visible above/below the cursor
-vim.opt.signcolumn = "yes"             -- Always show the sign column
-vim.opt.isfname:append("@-@")          -- Allows '@' in filenames
-vim.opt.clipboard = "unnamedplus"      -- Uses the system clipboard for all yank, delete, change and put operations
-vim.opt.undofile = true                -- Enables persistent undo
-vim.opt.updatetime = 50                -- Sets the time after which the swap file is written (in milliseconds)
-vim.o.breakindent = true               -- Makes wrapped lines visually indented
-vim.o.termguicolors = true             -- Enables true color support (duplicated setting)
-vim.o.splitright = true                -- Set horizontal splits to the right as default
-vim.o.splitbelow = true                -- Set vertical splits to the bottom as default
-vim.o.completeopt = 'menuone,noselect' -- Configures how the completion menu works
-vim.o.winborder = 'rounded'            -- LSP hover borders
-vim.opt.list = true
-vim.opt.listchars = { tab = "| " }
-
----------------------------------------------------------------------------------
--- [[ PLUGINS ]]
----------------------------------------------------------------------------------
-vim.pack.add({
-    { src = "https://github.com/rebelot/kanagawa.nvim" },
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/ibhagwan/fzf-lua" },
-    { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/akinsho/toggleterm.nvim" },
-    { src = "https://github.com/folke/trouble.nvim" },
-    { src = "https://github.com/saghen/blink.cmp" },
-    { src = "https://github.com/tribela/transparent.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
-    { src = "https://github.com/Teatek/gdscript-extended-lsp.nvim" },
-})
-
-require("trouble").setup()
-require('gdscript-extended-lsp').setup()
-require('kanagawa').setup({ undercurl = false, transparent = true })
-require("oil").setup({ view_options = { show_hidden = true, } })
-require("toggleterm").setup({ open_mapping = [[<c-\>]], direction = "float" })
-require('nvim-treesitter.configs').setup({ highlight = { enable = true, } })
-require("fzf-lua").setup({ winopts = { height = 0.95, width = 0.95, }, })
-require('blink.cmp').setup({
-    keymap = {
-        preset = 'none',
-        ['<Tab>'] = { 'show', 'select_next', 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-        ['<CR>'] = { 'accept', 'fallback' },
-    },
-    completion = { documentation = { auto_show = false } },
-    sources = { default = { 'path', 'buffer', 'lsp' }, },
-    fuzzy = { implementation = "lua" }
-})
-vim.cmd.colorscheme("kanagawa")
-
-vim.api.nvim_set_hl(0, "@string.special.url", {
-  underline = false,
-  undercurl = false,
-})
-
---------------------------------------------------------------------------------
--- [[ SMART FILE PICKER ]]
---------------------------------------------------------------------------------
-local function smart_files()
-    local is_godot = vim.fs.find("project.godot", { upward = true })[1] ~= nil
-
-    if is_godot then
-        require("fzf-lua").files({
-            cmd = "fdfind --type f -e gd -e cs -e gdshader -e shader -e tscn -e tres -e cfg --exclude .godot --exclude .import"
-        })
-    else
-        require("fzf-lua").files()
-    end
-end
-
----------------------------------------------------------------------------------
--- [[ KEYMAPS ]]
----------------------------------------------------------------------------------
 vim.g.mapleader = " "
-vim.keymap.set('n', '<Esc>', '<Cmd>noh<CR><Esc>', { silent = true })
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set('n', 'cr', '<cmd>lua vim.lsp.buf.rename()<cr>')
-vim.keymap.set('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-vim.keymap.set("v", "<S-Tab>", "<gv")
-vim.keymap.set("v", "<Tab>", ">gv")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<leader>p", "<cmd>b#<CR>")
-vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>")
-vim.keymap.set("n", "<leader>f", smart_files)
-vim.keymap.set("n", "<leader>q", ":Trouble diagnostics toggle<CR>")
-vim.keymap.set("n", "<leader>e", ":Oil<CR>")
-vim.keymap.set("n", "<leader>sp", ":lua FzfLua.grep_project()<CR>")
-vim.keymap.set("n", "<leader>sf", ":lua FzfLua.grep_curbuf()<CR>")
-vim.keymap.set("n", "<leader>sw", ":lua FzfLua.grep_cword()<CR>")
-vim.keymap.set("n", "<leader>h", function() require("fzf-lua").help_tags() end)
-vim.keymap.set("n", "<leader>b", function() require("fzf-lua").buffers() end)
+vim.g.termguicolors = true
+vim.o.path = "**"
+vim.o.nu = true
+vim.o.cursorline = true
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.ignorecase = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.wrap = false
+vim.o.undofile = true
+vim.o.list = true
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.winborder = 'rounded'
+vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
+vim.g.gutentags_cache_dir = os.getenv("HOME") .. "/.cache/nvim/tags"
+vim.opt.clipboard = "unnamedplus"
+vim.o.completeopt = 'menuone,noselect'
+vim.cmd(":colorscheme retrobox")
+vim.api.nvim_create_autocmd("BufEnter", { pattern = "term://*", callback = function() vim.cmd("startinsert") end })
+vim.lsp.enable({ "gopls", "gdscript" })
 
---------------------------------------------------------------------------------
--- [[ LSP ]]
----------------------------------------------------------------------------------
-local servers = { "gopls", "gdscript" }
-for _, server in ipairs(servers) do
-    vim.lsp.enable(server)
-end
-
---------------------------------------------------------------------------------
--- [[ AUTOCMDS ]]
----------------------------------------------------------------------------------
--- Highlight on Yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    pattern = '*',
+vim.pack.add({
+    { src = "https://github.com/ibhagwan/fzf-lua" },
+    { src = "https://github.com/tribela/transparent.nvim" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
 })
+require("fzf-lua").setup()
+require('nvim-treesitter.configs').setup({highlight = { enable = true }})
 
---------------------------------------------------------------------------------
--- [[ Godot ]]
----------------------------------------------------------------------------------
--- paths to check for project.godot file
-local paths_to_check = {'/', '/../'}
-local is_godot_project = false
-local godot_project_path = ''
+local map = vim.keymap.set
+map({"t", "n"}, "<C-h>", "<C-\\><C-n><C-w><C-h>")
+map({"t", "n"}, "<C-j>", "<C-\\><C-n><C-w><C-j>")
+map({"t", "n"}, "<C-k>", "<C-\\><C-n><C-w><C-k>")
+map({"t", "n"}, "<C-l>", "<C-\\><C-n><C-w><C-l>")
+map({"i", "n"}, "<C- >", "<C-x><C-o>")
+map("n", '<Esc>', '<Cmd>noh<CR><Esc>')
+map("t", "<ESC><ESC>", "<C-\\><C-n>")
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "<S-Tab>", "<gv")
+map("v", "<Tab>"  , ">gv")
+map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+map("n", "<leader>p", "<cmd>b#<CR>")
+map("n", "<leader>e", ":Ex<CR>")
+map("n", "<leader>ff", ":lua FzfLua.files()<CR>")
+map("n", "<leader>fo", ":lua FzfLua.buffers()<CR>")
+map("n", "<leader>fp",  ":lua FzfLua.lsp_document_diagnostics()<CR>")
+map("n", "<leader>fa",  ":lua FzfLua.lsp_code_actions()<CR>")
+map("n", "<leader>sp", ":lua FzfLua.grep_project()<CR>")
+map("n", "<leader>sf", ":lua FzfLua.grep_curbuf()<CR>")
+map("n", "<leader>sw", ":lua FzfLua.grep_cword()<CR>")
+map("n", "<leader>sh",  ":lua FzfLua.help_tags()<CR>")
+map("n", "<leader>1",  ":vsplit | vertical resize 95 | terminal<CR>a")
+map("n", "<leader>2",  ":split  | horizontal resize 25 | terminal<CR>a")
+
+-- [[ GODOT ]]
 local cwd = vim.fn.getcwd()
-
--- iterate over paths and check
-for key, value in pairs(paths_to_check) do
-    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
-        is_godot_project = true
-        godot_project_path = cwd .. value
+for _, path in ipairs({ cwd, cwd .. '/..' }) do
+    if vim.uv.fs_stat(path .. '/project.godot') and not vim.uv.fs_stat(path .. '/server.pipe') then
+        vim.fn.serverstart(path .. '/server.pipe')
         break
     end
-end
-
--- check if server is already running in godot project path
-local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
-if is_godot_project and not is_server_running then
-    vim.fn.serverstart(godot_project_path .. '/server.pipe')
 end
