@@ -23,7 +23,7 @@ set -gx GOROOT /usr/local/go
 set -gx PATH /usr/local/go/bin $GOPATH/bin $PATH
 
 # FZF configuration
-set -gx FZF_DEFAULT_COMMAND 'fdfind --exclude={.git,.cache,.xmake,.zig-cache,build,tmp,node_modules,elpa} --type f -H'
+# set -gx FZF_DEFAULT_COMMAND 'fdfind --exclude={.git,.cache,.xmake,.zig-cache,build,tmp,node_modules,elpa} --type f -H'
 
 set -gx FZF_DEFAULT_OPTS "
      --height 40%
